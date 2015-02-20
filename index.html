@@ -18,17 +18,6 @@ layout: default
   {% endfor %}
 </ul>
 
-{{ notes | markdownify }}
-
-<ul>
-  {% assign galleries = (site.posts | where: "layout" , "note") %}
-  {% for post in galleries %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
-
 {% comment %}
 {{ photos | markdownify }}
 
