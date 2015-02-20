@@ -5,12 +5,24 @@ layout: default
 {% capture projects %}{% include projects.md %}{% endcapture %}
 {% capture publicaitons %}{% include publications.md %}{% endcapture %}
 {% capture photos %}{% include photos.md %}{% endcapture %}
+{% capture notes %}{% include notes.md %}{% endcapture %}
 
 {{ about | markdownify }}
 
 <ul>
   {% assign posts = (site.posts | where: "layout" , "post") %}
   {% for post in posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{{ notes | markdownify }}
+
+<ul>
+  {% assign galleries = (site.posts | where: "layout" , "note") %}
+  {% for post in galleries %}
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
