@@ -1,12 +1,25 @@
 @import url(//fonts.googleapis.com/css?family=Montserrat:700);
 @import url(//fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,200,700,600,500);
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+@font-face {
+  font-family: 'OpenBaskerville0053Normal';
+  src: url('webfonts/OpenBaskerville-0.0.53.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* The following rules are deprecated. */
+@font-face {
+  font-family: 'Open Baskerville 0.0.53';
+  src: url('webfonts/OpenBaskerville-0.0.53.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html {
-  /*font: 16px/1.5 'Lato', sans-serif;*/
-  font: 17px/1.6 'Capita-Light', sans-serif;
+  font: 17px/1.6 'OpenBaskerville0053Normal', 'Libre Baskerville', serif;
   font-weight: 300;
 }
 
@@ -41,9 +54,10 @@ a:hover, a:focus {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 0 0.5rem -0.1rem /* align left edge */;
   line-height: 1;
+  font-weight: 700;
   color: #111;
   text-rendering: optimizeLegibility;
 }
