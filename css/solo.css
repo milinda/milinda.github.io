@@ -1,7 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Montserrat:700);
 @import url(//fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic);
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic);
 
 @font-face {
   font-family: 'OpenBaskerville0053Normal';
@@ -19,7 +18,7 @@
 }
 
 html {
-  font: 17px/1.6 'OpenBaskerville0053Normal', 'Libre Baskerville', serif;
+  font: 18px/1.5 'OpenBaskerville0053Normal', Georgia, serif;
   font-weight: 300;
 }
 
@@ -54,10 +53,10 @@ a:hover, a:focus {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', 'Lato', sans-serif;
   margin: 0 0 0.5rem -0.1rem /* align left edge */;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 300;
   color: #111;
   text-rendering: optimizeLegibility;
 }
@@ -80,7 +79,7 @@ h1 {
 
 @media (min-width: 35rem) {
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
   }
 }
@@ -98,7 +97,7 @@ h2 {
 @media (min-width: 35rem) {
   h2 {
     margin-top: 2.5rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
   }
 }
