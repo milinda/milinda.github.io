@@ -1,5 +1,6 @@
 ## Projects
 
+- [Streaming SQL for Apache Samza](https://issues.apache.org/jira/browse/SAMZA-390)
 - [Freshet](https://github.com/milinda/Freshet)
 - [HathiTrust Research Center](http://htrc.github.io) (Research Assistant)
 - [WSO2 Business Process Server](http://wso2.com/products/business-process-server/) (Lead Developer and Product Manager *from 2009 to 2011*)
