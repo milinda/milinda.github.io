@@ -1,6 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Montserrat:700);
 @import url(//fonts.googleapis.com/css?family=Inconsolata:400,700);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic);
+@import url(http://fonts.googleapis.com/css?family=Alegreya);
+@import url(http://fonts.googleapis.com/css?family=Unica+One);
 
 @font-face {
   font-family: 'OpenBaskerville0053Normal';
@@ -18,8 +19,9 @@
 }
 
 html {
-  font: 18px/1.5 'OpenBaskerville0053Normal', Georgia, serif;
-  font-weight: 300;
+  /*font: 18px/1.5 'Gentinum Basic', 'OpenBaskerville0053Normal', Georgia, serif;*/
+  font: 18px/1.5 'Alegreya', 'Crimson Text',  serif;
+  font-weight: 400;
 }
 
 /*
@@ -33,9 +35,13 @@ html {
 body {
   margin: 2rem 0 1rem;
   /*color: #333;*/
+  background-color: #fcfaf2;
   color: rgb(77,77,77);
 }
 
+.hljs {
+  background-color: #fcfaf2;
+}
 @media (min-width: 35rem) {
   body {
     margin-top: 5rem;
@@ -53,11 +59,12 @@ a:hover, a:focus {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', 'Lato', sans-serif;
+  font-family: 'Unica One', 'Roboto', 'Lato', sans-serif;
+  text-transform: uppercase;
   margin: 0 0 0.5rem -0.1rem /* align left edge */;
   line-height: 1;
   font-weight: 300;
-  color: #111;
+  color: #c31;
   text-rendering: optimizeLegibility;
 }
 
@@ -171,13 +178,13 @@ td, th {
 }
 
 p,ul,ol,dl,pre,table,blockquote{
-  max-width: 35rem;
+  max-width: 500px;
   margin: 0 auto;
   margin-bottom: 2rem;
 }
 
 h1,h2,h3,h4,h5{
-  max-width: 35rem;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
@@ -197,5 +204,33 @@ kbd,
 pre,
 samp {
     font-family: monospace, serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
+}
+
+.group{
+  width: 860px;
+  margin: 0 auto 18px;
+}
+
+.main{
+  float: right;
+  width: 500px;
+}
+
+.side{
+  float: right;
+  width: 300px;
+  margin: 70px 34px 0 0;
+  font-size: 0.8rem;
+}
+
+.side > h1 {
+  text-transform: none;
+}
+
+.group:before, .group:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  visibility: hidden;
 }

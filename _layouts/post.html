@@ -10,22 +10,46 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/solo.css">
-    <script type="text/javascript">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script type="text/javascript">
    hljs.initHighlightingOnLoad();
   </script>
+
+   <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=322254214452270&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+   </script>
+
 {% include head.html %}
 </head>
 <body>
   <div class="container">
     <!--a href="/" style="margin-left: 320px; margin-right: 320px; margin-top: -100px;"><i class="fa fa-home fa-lg" style="padding-bottom: 30px;"></i></a-->
-    <p>
+    <!--p>
     <a href="/" style="color: #9b939a">Go Back</a>
-    </p>
-    <!--h1 class="main-title"><a href="/">{{ site.h1_tag_text }}</a></h1-->
-    <h1 style="font-size: 2rem;"><a href="{{ page.url }}">{{ page.title }}</a></h1>
-      <p style="margin-top:1rem; color: rgb(133, 153, 0);">{{ page.date | date: "%-d %B %Y" }}</p>
-    {{ content }}
+    </p-->
+    <div class="group">
+      <!--h1 class="main-title"><a href="/">{{ site.h1_tag_text }}</a></h1-->
+
+      <div class="main">
+        {{ content }}
+      </div>
+      <div class="side">
+        <h1 style="font-size: 2rem; font-family: 'Alegreya', serif;"><a href="{{ page.url }}">{{ page.title }}</a></h1>
+        <p style="margin-top:1rem; color: rgb(133, 153, 0);">{{ page.date | date: "%-d %B %Y" }}</p>
+        <p>{{ page.note }}</p>
+        <div class="fb-like" data-href="http://milinda.pathirage.org{{ page.url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div><p style="margin-top: 5px;"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+      </div>
+    </div>
   </div>
-{% include scripts.html %}
+  {% include scripts.html %}
+  <div id="fb-root"></div>
 </body>
 </html>
