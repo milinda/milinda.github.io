@@ -156,6 +156,7 @@ hr {
 .container img {
   margin: 0 auto;
   display: block;
+  padding-bottom: 30px;
 }
 
 table {

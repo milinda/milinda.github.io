@@ -42,7 +42,11 @@
       <div class="side">
         <h1 style="font-size: 2rem; font-family: 'Alegreya', serif;"><a href="{{ page.url }}">{{ page.title }}</a></h1>
         <p style="margin-top:1rem; color: rgb(133, 153, 0);">{{ page.date | date: "%-d %B %Y" }}</p>
+        {% if page.snote %}
+        <p style="font-size:20px;font-style:italic;">{{ page.note }}</p>
+        {% else  %}
         <p>{{ page.note }}</p>
+        {% endif %}
         <div class="fb-like" data-href="http://milinda.pathirage.org{{ page.url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div><p style="margin-top: 5px;"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
