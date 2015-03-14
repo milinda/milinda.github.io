@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Apache Calcite : JSON Model</title>
+        <meta name="description" content="A Dynamic Data Management Framework">
+        <!-- jQuery -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,500,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/syntax.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/calcite-logo.png"/>Apache Calcite</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Apache <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">How Apache Works</a></li>
+                <li><a href="#">Foundation</a></li>
+                <li><a href="#">Sponsoring Apache</a></li>
+                <li><a href="#">Thanks</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+        <div class="container main-container">
+            <div class=row-fluid>
+                
+                
+                    <div id=navigation class=col-sm-3>
+                        <ul class="nav nav-list sd-nav">
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Project</li>
+            
+            <li data-order=""><a href="/proj/incubator-proposal.html">Incubator Proposal</a></li>
+        
+    
+        
+        
+
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Tutorials</li>
+            
+            <li data-order=""><a href="/tut/csv-adapter.html">CSV Adapter</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Reference</li>
+            
+            <li data-order=""><a href="/ref/sql-extensions-for-streaming.html">SQL Extensions for Streaming</a></li>
+        
+            
+            <li data-order=""><a href="/ref/sql-language-reference.html">SQL Language Reference</a></li>
+        
+            
+            <li data-order=""><a href="/ref/json-model.html">JSON Model</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Community</li>
+            
+            <li data-order=""><a href="/com/source-repository.html">Source Repository</a></li>
+        
+            
+            <li data-order=""><a href="/com/committers.html">Committers</a></li>
+        
+            
+            <li data-order=""><a href="/com/bugs.html">Bugs</a></li>
+        
+            
+            <li data-order=""><a href="/com/mailing-lists.html">Mailing Lists</a></li>
+        
+    
+        
+        
+
+        
+    
+        
+        
+
+        
+            
+                <li class=nav-header>Downloads</li>
+            
+            <li data-order=""><a href="/down/092incubating.html">0.9.2-incubating</a></li>
+        
+            
+            <li data-order=""><a href="/down/091incubating.html">0.9.1-incubating</a></li>
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+</ul>
+
+                    </div>
+
+                    <div id=content class=col-sm-9>
+                        <div class=page-header>
+    <h2>JSON Model
+        
+    </h2>
+</div>
+
+<h2 id="elements">Elements</h2>
+
+<h3 id="root">Root</h3>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">version:</span> <span class="err">&#39;1.0&#39;,</span>
+  <span class="err">defaultSchema:</span> <span class="err">&#39;mongo&#39;,</span>
+  <span class="err">schemas:</span> <span class="err">[</span> <span class="err">Schema...</span> <span class="err">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>version</code> (required string) must have value <code>1.0</code>.</p>
+
+<p><code>defaultSchema</code> (optional string). If specified, it is
+the name (case-sensitive) of a schema defined in this model, and will
+become the default schema for connections to Calcite that use this model.</p>
+
+<p><code>schemas</code> (optional list of <a href="#schema">Schema</a> elements).</p>
+
+<h3 id="schema">Schema</h3>
+
+<p>Occurs within <code>root.schemas</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;foodmart&#39;,</span>
+  <span class="err">path:</span> <span class="err">[&#39;lib&#39;],</span>
+  <span class="err">cache:</span> <span class="err">true,</span>
+  <span class="err">materializations:</span> <span class="err">[</span> <span class="err">Materialization...</span> <span class="err">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code> (required string) is the name of the schema.</p>
+
+<p><code>type</code> (optional string, default <code>map</code>) indicates sub-type. Values are:
+* <code>map</code> for <a href="#map-schema">Map Schema</a>
+* <code>custom</code> for <a href="#custom-schema">Custom Schema</a>
+* <code>jdbc</code> for <a href="#jdbc-schema">JDBC Schema</a></p>
+
+<p><code>path</code> (optional list) is the SQL path that is used to
+resolve functions used in this schema. If specified it must be a list,
+and each element of the list must be either a string or a list of
+strings. For example,</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json">  <span class="err">path:</span> <span class="p">[</span> <span class="p">[</span><span class="err">&#39;usr&#39;</span><span class="p">,</span> <span class="err">&#39;lib&#39;</span><span class="p">],</span> <span class="err">&#39;lib&#39;</span> <span class="p">]</span>
+</code></pre></div>
+<p>declares a path with two elements: the schema &#39;/usr/lib&#39; and the
+schema &#39;/lib&#39;. Most schemas are at the top level, so you can use a
+string.</p>
+
+<p><code>materializations</code> (optional list of
+<a href="#materialization">Materialization</a>) defines the tables
+in this schema that are materializations of queries.</p>
+
+<p><code>cache</code> (optional boolean, default true) tells Calcite whether to
+cache metadata (tables, functions and sub-schemas) generated
+by this schema.</p>
+
+<ul>
+<li><p>If <code>false</code>, Calcite will go back to the schema each time it needs
+metadata, for example, each time it needs a list of tables in order to
+validate a query against the schema.</p></li>
+<li><p>If <code>true</code>, Calcite will cache the metadata the first time it reads
+it. This can lead to better performance, especially if name-matching is
+case-insensitive.</p></li>
+</ul>
+
+<p>However, it also leads to the problem of cache staleness.
+A particular schema implementation can override the
+<code>Schema.contentsHaveChangedSince</code> method to tell Calcite
+when it should consider its cache to be out of date.</p>
+
+<p>Tables, functions and sub-schemas explicitly created in a schema are
+not affected by this caching mechanism. They always appear in the schema
+immediately, and are never flushed.</p>
+
+<h3 id="map-schema">Map Schema</h3>
+
+<p>Like base class <a href="#schema">Schema</a>, occurs within <code>root.schemas</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;foodmart&#39;,</span>
+  <span class="err">type:</span> <span class="err">&#39;map&#39;,</span>
+  <span class="err">tables:</span> <span class="err">[</span> <span class="err">Table...</span> <span class="err">],</span>
+  <span class="err">functions:</span> <span class="err">[</span> <span class="err">Function...</span> <span class="err">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code>, <code>type</code>, <code>path</code>, <code>cache</code>, <code>materializations</code> inherited from
+<a href="#schema">Schema</a>.</p>
+
+<p><code>tables</code> (optional list of <a href="#table">Table</a> elements)
+defines the tables in this schema.</p>
+
+<p><code>functions</code> (optional list of <a href="#function">Function</a> elements)
+defines the functions in this schema.</p>
+
+<h3 id="custom-schema">Custom Schema</h3>
+
+<p>Like base class <a href="#schema">Schema</a>, occurs within <code>root.schemas</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;mongo&#39;,</span>
+  <span class="err">type:</span> <span class="err">&#39;custom&#39;,</span>
+  <span class="err">factory:</span> <span class="err">&#39;org.apache.calcite.adapter.mongodb.MongoSchemaFactory&#39;,</span>
+  <span class="err">operand:</span> <span class="err">{</span>
+    <span class="err">host:</span> <span class="err">&#39;localhost&#39;,</span>
+    <span class="err">database:</span> <span class="err">&#39;test&#39;</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+</code></pre></div>
+<p><code>name</code>, <code>type</code>, <code>path</code>, <code>cache</code>, <code>materializations</code> inherited from
+<a href="#schema">Schema</a>.</p>
+
+<p><code>factory</code> (required string) is the name of the factory class for this
+schema. Must implement interface <code>org.apache.calcite.schema.SchemaFactory</code>
+and have a public default constructor.</p>
+
+<p><code>operand</code> (optional map) contains attributes to be passed to the
+factory.</p>
+
+<h3 id="jdbc-schema">JDBC Schema</h3>
+
+<p>Like base class <a href="#schema">Schema</a>, occurs within <code>root.schemas</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;foodmart&#39;,</span>
+  <span class="err">type:</span> <span class="err">&#39;jdbc&#39;,</span>
+  <span class="err">jdbcDriver:</span> <span class="err">TODO,</span>
+  <span class="err">jdbcUrl:</span> <span class="err">TODO,</span>
+  <span class="err">jdbcUser:</span> <span class="err">TODO,</span>
+  <span class="err">jdbcPassword:</span> <span class="err">TODO,</span>
+  <span class="err">jdbcCatalog:</span> <span class="err">TODO,</span>
+  <span class="err">jdbcSchema:</span> <span class="err">TODO</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code>, <code>type</code>, <code>path</code>, <code>cache</code>, <code>materializations</code> inherited from
+<a href="#schema">Schema</a>.</p>
+
+<p><code>jdbcDriver</code> (optional string) is the name of the JDBC driver class. It not
+specified, uses whichever class the JDBC DriverManager chooses.</p>
+
+<p><code>jdbcUrl</code> (optional string) is the JDBC connect string, for example
+&quot;jdbc:mysql://localhost/foodmart&quot;.</p>
+
+<p><code>jdbcUser</code> (optional string) is the JDBC user name.</p>
+
+<p><code>jdbcPassword</code> (optional string) is the JDBC password.</p>
+
+<p><code>jdbcCatalog</code> (optional string) is the name of the initial catalog in the JDBC
+data source.</p>
+
+<p><code>jdbcSchema</code> (optional string) is the name of the initial schema in the JDBC
+data source.</p>
+
+<h3 id="materialization">Materialization</h3>
+
+<p>Occurs within <code>root.schemas.materializations</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">view:</span> <span class="err">&#39;V&#39;,</span>
+  <span class="err">table:</span> <span class="err">&#39;T&#39;,</span>
+  <span class="err">sql:</span> <span class="err">&#39;select</span> <span class="err">deptno,</span> <span class="err">count(*)</span> <span class="err">as</span> <span class="err">c,</span> <span class="err">sum(sal)</span> <span class="err">as</span> <span class="err">s</span> <span class="err">from</span> <span class="err">emp</span> <span class="err">group</span> <span class="err">by</span> <span class="err">deptno&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>view</code> (optional string) TODO</p>
+
+<p><code>table</code> (optional string) TODO</p>
+
+<p><code>sql</code> (optional string, or list of strings that will be concatenated as a
+ multi-line string) is the SQL definition of the materialization.</p>
+
+<h3 id="table">Table</h3>
+
+<p>Occurs within <code>root.schemas.tables</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;sales_fact&#39;,</span>
+  <span class="err">columns:</span> <span class="err">[</span> <span class="err">Column...</span> <span class="err">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code> (required string) is the name of this table. Must be unique within the schema.</p>
+
+<p><code>type</code> (optional string, default <code>custom</code>) indicates sub-type. Values are:
+* <code>custom</code> for <a href="#custom-table">Custom Table</a>
+* <code>view</code> for <a href="#view">View</a></p>
+
+<p><code>columns</code> (optional list of <a href="#column">Column</a> elements)</p>
+
+<h3 id="view">View</h3>
+
+<p>Like base class <a href="#table">Table</a>, occurs within <code>root.schemas.tables</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;female_emps&#39;,</span>
+  <span class="err">type:</span> <span class="err">&#39;view&#39;,</span>
+  <span class="err">sql:</span> <span class="nt">&quot;select * from emps where gender = &#39;F&#39;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code>, <code>type</code>, <code>columns</code> inherited from <a href="#table">Table</a>.</p>
+
+<p><code>sql</code> (required string, or list of strings that will be concatenated as a
+ multi-line string) is the SQL definition of the view.</p>
+
+<p><code>path</code> (optional list) is the SQL path to resolve the query. If not
+specified, defaults to the current schema.</p>
+
+<h3 id="custom-table">Custom Table</h3>
+
+<p>Like base class <a href="#table">Table</a>, occurs within <code>root.schemas.tables</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;female_emps&#39;,</span>
+  <span class="err">type:</span> <span class="err">&#39;custom&#39;,</span>
+  <span class="err">factory:</span> <span class="err">&#39;TODO&#39;,</span>
+  <span class="err">operand:</span> <span class="err">{</span>
+    <span class="err">todo:</span> <span class="err">&#39;TODO&#39;</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+</code></pre></div>
+<p><code>name</code>, <code>type</code>, <code>columns</code> inherited from <a href="#table">Table</a>.</p>
+
+<p><code>factory</code> (required string) is the name of the factory class for this
+table. Must implement interface <code>org.apache.calcite.schema.TableFactory</code>
+and have a public default constructor.</p>
+
+<p><code>operand</code> (optional map) contains attributes to be passed to the
+factory.</p>
+
+<h3 id="column">Column</h3>
+
+<p>Occurs within <code>root.schemas.tables.columns</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;empno&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code> (required string) is the name of this column.</p>
+
+<h3 id="function">Function</h3>
+
+<p>Occurs within <code>root.schemas.functions</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;MY_PLUS&#39;,</span>
+  <span class="err">className:</span> <span class="err">&#39;com.example.functions.MyPlusFunction&#39;,</span>
+  <span class="err">methodName:</span> <span class="err">&#39;apply&#39;,</span>
+  <span class="err">path:</span> <span class="err">[]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>name</code> (required string) is the name of this function.</p>
+
+<p><code>className</code> (required string) is the name of the class that implements this
+function.</p>
+
+<p><code>methodName</code> (optional string) is the name of the method that implements this
+function.</p>
+
+<p><code>path</code> (optional list of string) is the path for resolving this function.</p>
+
+<h3 id="lattice">Lattice</h3>
+
+<p>Occurs within <code>root.schemas.lattices</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">name:</span> <span class="err">&#39;star&#39;,</span>
+  <span class="err">sql:</span> <span class="err">[</span>
+    <span class="err">&#39;select</span> <span class="err">1</span> <span class="err">from</span> <span class="nt">&quot;foodmart&quot;</span><span class="err">.</span><span class="s2">&quot;sales_fact_1997&quot;</span> <span class="err">as</span> <span class="s2">&quot;s&quot;</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="err">&#39;join</span> <span class="nt">&quot;foodmart&quot;</span><span class="err">.</span><span class="s2">&quot;product&quot;</span> <span class="err">as</span> <span class="s2">&quot;p&quot;</span> <span class="err">using</span> <span class="err">(</span><span class="s2">&quot;product_id&quot;</span><span class="err">)&#39;</span><span class="p">,</span>
+    <span class="err">&#39;join</span> <span class="nt">&quot;foodmart&quot;</span><span class="err">.</span><span class="s2">&quot;time_by_day&quot;</span> <span class="err">as</span> <span class="s2">&quot;t&quot;</span> <span class="err">using</span> <span class="err">(</span><span class="s2">&quot;time_id&quot;</span><span class="err">)&#39;</span><span class="p">,</span>
+    <span class="err">&#39;join</span> <span class="nt">&quot;foodmart&quot;</span><span class="err">.</span><span class="s2">&quot;product_class&quot;</span> <span class="err">as</span> <span class="s2">&quot;pc&quot;</span> <span class="err">on</span> <span class="s2">&quot;p&quot;</span><span class="err">.</span><span class="s2">&quot;product_class_id&quot;</span> <span class="err">=</span> <span class="s2">&quot;pc&quot;</span><span class="err">.</span><span class="s2">&quot;product_class_id&quot;</span><span class="err">&#39;</span>
+  <span class="err">]</span><span class="p">,</span>
+  <span class="err">auto:</span> <span class="err">false,</span>
+  <span class="err">algorithm:</span> <span class="err">true,</span>
+  <span class="err">algorithmMaxMillis:</span> <span class="err">10000,</span>
+  <span class="err">rowCountEstimate:</span> <span class="err">86837,</span>
+  <span class="err">defaultMeasures:</span> <span class="err">[</span> <span class="err">{</span>
+    <span class="err">agg:</span> <span class="err">&#39;count&#39;</span>
+  <span class="p">}</span> <span class="err">],</span>
+  <span class="err">tiles:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="err">dimensions:</span> <span class="err">[</span> <span class="err">&#39;the_year&#39;,</span> <span class="err">[&#39;t&#39;,</span> <span class="err">&#39;quarter&#39;]</span> <span class="err">],</span>
+    <span class="err">measures:</span> <span class="err">[</span> <span class="err">{</span>
+      <span class="err">agg:</span> <span class="err">&#39;sum&#39;,</span>
+      <span class="err">args:</span> <span class="err">&#39;unit_sales&#39;</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="err">agg:</span> <span class="err">&#39;sum&#39;,</span>
+      <span class="err">args:</span> <span class="err">&#39;store_sales&#39;</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="err">agg:</span> <span class="err">&#39;count&#39;</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="err">}</span> <span class="err">]</span>
+<span class="err">}</span>
+</code></pre></div>
+<p><code>name</code> (required string) is the name of this lattice.</p>
+
+<p><code>sql</code> (required string, or list of strings that will be concatenated as a
+multi-line string) is the SQL statement that defines the fact table, dimension
+tables, and join paths for this lattice.</p>
+
+<p><code>auto</code> (optional boolean, default true) is whether to materialize tiles on need
+as queries are executed.</p>
+
+<p><code>algorithm</code> (optional boolean, default false) is whether to use an optimization
+algorithm to suggest and populate an initial set of tiles.</p>
+
+<p><code>algorithmMaxMillis</code> (optional long, default -1, meaning no limit) is the
+maximum number of milliseconds for which to run the algorithm. After this point,
+takes the best result the algorithm has come up with so far.</p>
+
+<p><code>rowCountEstimate</code> (optional double, default 1000.0) estimated number of rows in
+the star</p>
+
+<p><code>tiles</code> (optional list of <a href="#tile">Tile</a> elements) is a list of
+materialized aggregates to create up front.</p>
+
+<p><code>defaultMeasures</code>  (optional list of <a href="#measure">Measure</a> elements)
+is a list of measures that a tile should have by default.
+Any tile defined in <code>tiles</code> can still define its own measures, including
+measures not on this list. If not specified, the default list of measures is
+just &#39;count(*)&#39;:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">[</span> <span class="p">{</span> <span class="err">name:</span> <span class="err">&#39;count&#39;</span> <span class="p">}</span> <span class="p">]</span>
+</code></pre></div>
+<h3 id="tile">Tile</h3>
+
+<p>Occurs within <code>root.schemas.lattices.tiles</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">dimensions:</span> <span class="err">[</span> <span class="err">&#39;the_year&#39;,</span> <span class="err">[&#39;t&#39;,</span> <span class="err">&#39;quarter&#39;]</span> <span class="err">],</span>
+  <span class="err">measures:</span> <span class="err">[</span> <span class="err">{</span>
+    <span class="err">agg:</span> <span class="err">&#39;sum&#39;,</span>
+    <span class="err">args:</span> <span class="err">&#39;unit_sales&#39;</span>
+  <span class="p">}</span><span class="err">,</span> <span class="p">{</span>
+    <span class="err">agg:</span> <span class="err">&#39;sum&#39;,</span>
+    <span class="err">args:</span> <span class="err">&#39;store_sales&#39;</span>
+  <span class="p">}</span><span class="err">,</span> <span class="p">{</span>
+    <span class="err">agg:</span> <span class="err">&#39;count&#39;</span>
+  <span class="p">}</span> <span class="err">]</span>
+<span class="err">}</span>
+</code></pre></div>
+<p><code>dimensions</code> is a list of dimensions (columns from the star), like a <code>GROUP BY</code>
+clause. Each element is either a string (the unique label of the column within
+the star) or a string list (a column name qualified by a table name).</p>
+
+<p><code>measures</code> (optional list of <a href="#measure">Measure</a> elements) is a list
+of aggregate functions applied to arguments. If not specified, uses the
+lattice&#39;s default measure list.</p>
+
+<h3 id="measure">Measure</h3>
+
+<p>Occurs within <code>root.schemas.lattices.defaultMeasures</code>
+and <code>root.schemas.lattices.tiles.measures</code>.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">agg:</span> <span class="err">&#39;sum&#39;,</span>
+  <span class="err">args:</span> <span class="err">[</span> <span class="err">&#39;unit_sales&#39;</span> <span class="err">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>agg</code> is the name of an aggregate function (usually &#39;count&#39;, &#39;sum&#39;, &#39;min&#39;,
+&#39;max&#39;).</p>
+
+<p><code>args</code> (optional) is a column label (string), or list of zero or more columns.
+If a list, each element is either a string (the unique label of the column
+within the star) or a string list (a column name qualified by a table name).</p>
+
+
+                    </div>
+                
+            </div>
+
+            
+
+            <div class=row-fluid>
+                <div id=footer class=span12>
+                    Copyright © 2014  <a href="http://www.apache.org">Apache Software Foundation</a>. All Rights Reserved. 
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+        
+    </body>
+</html>
