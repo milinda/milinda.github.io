@@ -30,31 +30,25 @@
 
 {% include head.html %}
 </head>
-<body>
+<body class="post-body">
   <div class="container">
     <!--a href="/" style="margin-left: 320px; margin-right: 320px; margin-top: -100px;"><i class="fa fa-home fa-lg" style="padding-bottom: 30px;"></i></a-->
     <!--p>
     <a href="/" style="color: #9b939a">Go Back</a>
     </p-->
     <div class="group">
-      <!--h1 class="main-title"><a href="/">{{ site.h1_tag_text }}</a></h1-->
+  
+        <h1 class="post-title"><a href="{{ page.url }}">{{ page.title }}</a></h1>
+        <p class="post-date"><span class="pd-span">{{ page.date | date: "%B %-d, %Y" }}</span></p>
 
-      <div class="main">
         {{ content }}
-      </div>
-      <div class="side">
-        <h1 style="font-size: 2rem; font-family: 'Alegreya', serif;"><a href="{{ page.url }}">{{ page.title }}</a></h1>
-        <p style="margin-top:1rem; color: rgb(133, 153, 0);">{{ page.date | date: "%-d %B %Y" }}</p>
-        {% if page.snote %}
-        <p style="font-size:20px;font-style:italic;">{{ page.note }}</p>
-        {% else  %}
-        <p>{{ page.note }}</p>
-        {% endif %}
-        <div class="fb-like" data-href="http://milinda.pathirage.org{{ page.url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div><p style="margin-top: 5px;"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-      </div>
-    </div>
+        <!--div class="fb-like" data-href="http://milinda.pathirage.org{{ page.url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div><p style="margin-top: 5px;margin-bottom:0;"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <a href="https://news.ycombinator.com/submit" class="hn-button" data-count="horizontal" data-style="twitter">Vote on Hacker News</a>
+<script type="text/javascript">var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
+      </div-->
+
   </div>
   {% include scripts.html %}
   <div id="fb-root"></div>
