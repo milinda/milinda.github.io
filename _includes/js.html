@@ -1,0 +1,103 @@
+<script type="text/javascript" src="{{ "/assets/js/vendors/jquery.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/js/vendors/jquery.backstretch.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/js/vendors/jquery.scrollstop.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/js/vendors/rrssb.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/js/functions.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+    ;!(function ($) {
+    $.fn.classes = function (callback) {
+        var classes = [];
+        $.each(this, function (i, v) {
+            var splitClassName = v.className.split(/\s+/);
+            for (var j in splitClassName) {
+                var className = splitClassName[j];
+                if (-1 === classes.indexOf(className)) {
+                    classes.push(className);
+                }
+            }
+        });
+        if ('function' === typeof callback) {
+            for (var i in classes) {
+                callback(classes[i]);
+            }
+        }
+        return classes;
+    };
+})(jQuery);
+
+    $(function($) {
+        var steps = [];
+        var folded;
+
+
+        var images = [
+            /*{% for image in page.backgrounds %}'{{ image }}',{% endfor %}*/
+            "{{ "/assets/img/code_back.JPG" | prepend: site.baseurl }}"
+        ];
+
+        if (images.length > 0) {
+            steps = scrollSteps(images.length);
+
+            $.backstretch(images, { fade: 800 });
+            $.backstretch('pause');
+        }
+
+        $(document).on('scrollstop', function () {
+            if (steps.length > 0) {
+                var percentage = scrollPercentage();
+
+                for (var i = 0; i < steps.length; i++) {
+                    if (percentage < steps[i]) {
+                        $.backstretch('show', i);
+                        break;
+                    }
+                }
+            }
+        });
+
+        $(document).ready(function(){
+            $("#menu-toggle").click(function (e){
+                e.preventDefault();
+                e.stopPropagation();
+                var classList = $("#menu-toggle").classes();
+                if($.inArray("fadei", classList) >= 0){
+                    console.log("fade in");
+                    $("#menu-items").addClass("fade-in");
+                    $("#menu-items").removeClass("fade-out");
+                    $("#menu-toggle").removeClass("fadei");
+                    $("#menu-toggle").addClass("fadeo");
+                } else {
+                    console.log("fade out");
+                    $("#menu-items").addClass("fade-out");
+                    $("#menu-items").removeClass("fade-in");
+                    $("#menu-toggle").removeClass("fadeo");
+                    $("#menu-toggle").addClass("fadei");   
+                }
+            });
+
+            $("#menu-toggle-parent").click(function (e){
+                e.preventDefault();
+                e.stopPropagation();
+                var classList = $("#menu-toggle-parent").classes();
+                if($.inArray("fadei", classList) >= 0){
+                    console.log("fade in");
+                    $("#menu-items").addClass("fade-in");
+                    $("#menu-items").removeClass("fade-out");
+                    $("#menu-toggle-parent").removeClass("fadei");
+                    $("#menu-toggle-parent").addClass("fadeo");
+                } else {
+                    console.log("fade out");
+                    $("#menu-items").addClass("fade-out");
+                    $("#menu-items").removeClass("fade-in");
+                    $("#menu-toggle-parent").removeClass("fadeo");
+                    $("#menu-toggle-parent").addClass("fadei");   
+                }
+            });
+
+            $("#sb-site").click(function(){
+                $("#menu-items").addClass("fade-out");
+                $("#menu-items").removeClass("fade-in");
+            });
+        })
+    });
+</script

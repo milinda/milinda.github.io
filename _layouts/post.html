@@ -1,62 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
-  <link rel="shortcut icon" href="http://milinda.pathirage.org/favicon.ico" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <script type="text/javascript"
-    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/solo.css">
-  <script type="text/javascript">
-   hljs.initHighlightingOnLoad();
-  </script>
+---
+layout: default
+---
+<div class="post">
+    {% if page.reading_time %}
+    <p class="post-reading-time">&#126;
+        {% capture words %}
+          {{ content | number_of_words | minus: 180 }}
+        {% endcapture %}
+        {% unless words contains "-" %}
+          {{ words | plus: 180 | divided_by: 180 | append: " min" }}
+        {% endunless %}
+    </p>
+    {% endif %}
 
-   <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=322254214452270&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-   </script>
-
-{% include head.html %}
-</head>
-<body>
-  <div class="container">
-    <!--a href="/" style="margin-left: 320px; margin-right: 320px; margin-top: -100px;"><i class="fa fa-home fa-lg" style="padding-bottom: 30px;"></i></a-->
-    <!--p>
-    <a href="/" style="color: #9b939a">Go Back</a>
-    </p-->
-    <div class="group">
-      <!--h1 class="main-title"><a href="/">{{ site.h1_tag_text }}</a></h1-->
-
-      <div class="main">
-        {{ content }}
-      </div>
-      <div class="side">
-        <h1 style="font-size: 2rem; font-family: 'Alegreya', serif;"><a href="{{ page.url }}">{{ page.title }}</a></h1>
-        <p style="margin-top:1rem; color: rgb(133, 153, 0);">{{ page.date | date: "%-d %B %Y" }}</p>
-        {% if page.snote %}
-        <p style="font-size:20px;font-style:italic;">{{ page.note }}</p>
-        {% else  %}
-        <p>{{ page.note }}</p>
+    <header class="post-header">
+        {% if page.thumb %}
+        <img src="{{ page.thumb }}" alt="{{ page.title }}" class="post-thumb" />
         {% endif %}
-        <div class="fb-like" data-href="http://milinda.pathirage.org{{ page.url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div><p style="margin-top: 5px;"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a></p>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <h1 class="post-title">{{ page.title }}</h1>
+        <h2 class="post-subtitle">{{ page.subtitle }}</h2>
+    </header>
 
-      </div>
-    </div>
-  </div>
-  {% include scripts.html %}
-  <div id="fb-root"></div>
-</body>
-</html>
+    <article class="post-content">
+        {{ content }}
+    </article>
+
+    <footer class="post-meta">
+        <div class="meta">
+            <h3 class="meta-title">Date</h3>
+            <span class="meta-content">{{ page.date | date: "%B %-d, %Y" }}</span>
+        </div>
+        {% if page.author %}
+        <div class="meta">
+            <h3 class="meta-title">Author</h3>
+            <span class="meta-content">{{ page.author }}</span>
+        </div>
+        {% endif %}
+        {% if page.show_categories %}
+        <div class="meta">
+            <h3 class="meta-title">Categories</h3>
+            <span class="meta-content">
+                {% for category in page.categories %}
+                    {{ category | capitalize }}&nbsp;
+                {% endfor %}
+            </span>
+        </div>
+        {% endif %}
+        {% if page.show_tags %}
+        <div class="meta">
+            <h3 class="meta-title">Tags</h3>
+            <span class="meta-content">
+                {% for tag in page.tags %}
+                    {{ tag | capitalize }}&nbsp;
+                {% endfor %}
+            </span>
+        </div>
+        {% endif %}
+    </footer>
+
+    {% include share.html %}
+</div>

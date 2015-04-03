@@ -1,34 +1,30 @@
 ---
 layout: default
+home: true
+backgrounds:
+    - https://dl.dropboxusercontent.com/u/18322837/cdn/Streetwill/code-screen.jpg
 ---
 {% capture about %}{% include about.md %}{% endcapture %}
+
 {% capture projects %}{% include projects.md %}{% endcapture %}
-{% capture publicaitons %}{% include publications.md %}{% endcapture %}
-{% capture photos %}{% include photos.md %}{% endcapture %}
 
-{{ about | markdownify }}
+{% capture publications %}{% include publications.md %}{% endcapture %}
 
-<ul>
-  {% assign posts = (site.posts | where: "type" , "post") %}
-  {% for post in posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+<div class="home">
+    <h1 class="title">Milinda/</h1>
 
-{{ photos | markdownify }}
+    {{ about | markdownify }}
 
-<ul>
-  {% assign galleries = (site.posts | where: "type" , "photos") %}
-  {% for post in galleries %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <ul>
+        {% assign posts = site.posts %}
+        {% for post in posts %}
+        <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
 
+    {{ projects | markdownify }}
 
-{{ projects | markdownify }}
-
-{{ publicaitons | markdownify }}
+    {{ publications | markdownify }}
+</div>

@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ site.title_tag_text }}</title>
-  <link rel="shortcut icon" href="http://milinda.pathirage.org/favicon.ico" />
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/syntax.css">
-  <link rel="stylesheet" href="css/solo.css">
+
 {% include head.html %}
-</head>
+
 <body>
-  <div class="container">
-    <h1 class="main-title"><a href="./">{{ site.h1_tag_text }}</a></h1>
-    {{ content }}
-  </div>
-{% include scripts.html %}
+
+    <main id="sb-site">
+        <div class="container">
+            <div class="wrapper">
+                {{ content }}
+            </div>
+
+            {% if site.pagination %}
+            {% include pagination.html %}
+            {% endif %}
+
+            {% include next.html %}
+
+        </div>
+
+    </main>
+
+    {% include sidebar.html %}
+
+    {% include js.html %}
 </body>
+
 </html>
