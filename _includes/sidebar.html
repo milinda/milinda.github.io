@@ -1,115 +1,11 @@
-<style type="text/css">
-.fixed-nav a { text-decoration: none; }
-
-.float-left { float: left; }
-.float-right { float: right; }
-
-.clearfix { *zoom: 1; }
-.clearfix:before, .clearfix:after {
-    display: table;
-    content: "";
-}
-.clearfix:after { clear: both; }
-
-
-/* ---------- NAVIGATION ---------- */
-
-nav {
-    margin: 0;
-    width: 60px;
-    left: 30px;
-    top: 30px;
-    z-index: 1;
-    position: fixed;
-    color: white;
-}
-
-nav a:visited {
-    color: white;
-}
-
-nav ul {
-    background-color: #505664;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    display: inline-table;
-    position: relative;
-    list-style: none;
-    margin: 0;
-}
-
-nav ul li {
-    float: left;
-}
-
-nav ul li a {
-    color: #6daeb0;
-    display: block;
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    width: 60px;
-}
-
-nav ul li a:hover{
-    color: #fff;
-}
-
-nav ul li ul {
-    /*background-color: #6daeb0;*/
-    background-color: #ff7364;
-    margin-top: 20px;
-    padding: 5px 0;
-    position: absolute;
-    -webkit-transition: opacity 0.5s ease-in; //for chrome, safari
-    -moz-transition: opacity 0.5s ease-in; //for mozilla firefox
-    -o-transition: opacity 0.5s ease-in; //for opera
-}
-
-nav ul li ul.fade-out {
-    opacity:0;
-}
-nav ul li ul.fade-in {
-    opacity:1;
-}
-
-nav ul li ul:before {
-    background-color: #ff7364;
-    content: "";
-    display: block;
-    height: 8px;
-    left: 26px; /* (nav ul li a { width: 60px; } / 2) - (nav ul li ul:before { width: 8px; } / 2) */
-    position: absolute;
-    top: -4px;
-    transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    width: 8px;
-    z-index: -1;
-}
-
-nav ul li ul li {
-    float: none;
-}
-
-nav ul li ul li a {
-    color: #fff;
-}
-
-nav ul li ul li a:hover {
-    background-color: #E54D3D;
-}
-</style>
-
 <nav class="fixed-nav">
     <ul class="clearfix">
         <li id="menu-toggle-parent" class="fadei"><a href="#" class="btn fadei" id="menu-toggle"><span class="fa fa-bars"></span></a>
             <ul id="menu-items" class="fade-out">
-                <li><a href="/"><span class="fa fa-home"></span></a></li>
-                <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                <li><a href="#"><span class="fa fa-github"></span></a></li>
+                <li><a href="/" class="menu-link"><span class="fa fa-home"></span></a></li>
+                <li><a href="https://www.flickr.com/photos/132302713@N02/" class="menu-link"><span class="fa fa-flickr"></span></a></li>
+                <li><a href="https://www.linkedin.com/in/milindapathirage" class="menu-link"><span class="fa fa-linkedin"></span></a></li>
+                <li><a href="https://github.com/milinda" class="menu-link"><span class="fa fa-github"></span></a></li>
             </ul>
         </li>
     </ul>

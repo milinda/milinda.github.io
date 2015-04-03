@@ -98,6 +98,11 @@
                 $("#menu-items").addClass("fade-out");
                 $("#menu-items").removeClass("fade-in");
             });
+
+            $(".menu-link").click(function(e){
+                e.stopPropagation();
+                window.location = $(this).attr('href');
+            });
         })
     });
 </script
