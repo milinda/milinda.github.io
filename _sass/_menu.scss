@@ -31,7 +31,8 @@ nav a:visited {
 }
 
 nav ul {
-    background-color: #505664;
+    /*background-color: #505664;*/
+    font-size:24px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -54,6 +55,11 @@ nav ul li a {
     width: 60px;
 }
 
+#menu-toggle{
+    height: 30px;
+    line-height: 30px;   
+}
+
 nav ul li a:hover{
     color: #fff;
 }
@@ -61,6 +67,7 @@ nav ul li a:hover{
 nav ul li ul {
     /*background-color: #6daeb0;*/
     background-color: #ff7364;
+    font-size: 16px;
     margin-top: 20px;
     padding: 5px 0;
     position: absolute;
