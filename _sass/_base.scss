@@ -1,0 +1,63 @@
+/**
+ * Basic styling
+ */
+body {
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+}
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: $header-font-family;
+}
+
+ul {
+    padding-left: 0;
+}
+
+/**
+ * Links
+ */
+a {
+    color: $brand-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($brand-color, 15%);
+    }
+    &:hover {
+        color: $text-color;
+        text-decoration: underline;
+    }
+}
+section {
+    margin-bottom: 15px;
+}
+p {
+    margin-bottom: 20px;
+}
+h1 {
+    font-size: 45px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 27px;
+}
+.sec-about {
+    padding-top: 72px;
+    font-size: 24px;
+    line-height: 36px;
+    background: #fff6da;
+    border-bottom: 1px #e7e7e7 solid;
+}
