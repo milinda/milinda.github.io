@@ -19,12 +19,12 @@
     color: $link-hover-color;
 }
 .sec-about {
-    padding-top: 90px;
-    padding-bottom: 18px;
+    padding-top: 80px;
+    // padding-bottom: 18px;
     font-size: $about-font-size;
     line-height: $about-line-height;
-    background: $about-background-color;
-    border-bottom: $about-border;
+    // background: $about-background-color;
+    // border-bottom: $about-border;
 }
 .navbar-default .navbar-brand {
     font-size: 36px;
@@ -51,14 +51,14 @@
     font-size: $name-font-size;
 }
 .post-header {
-    background: $about-background-color;
-    border-bottom: $about-border;
-    padding-top: 90px;
+    // background: $about-background-color;
+    // border-bottom: $about-border;
+    padding-top: 60px;
     text-align: center;
     padding-bottom: 18px;
 }
 .post-content {
-    padding-top: 36px;
+    // padding-top: 36px;
 }
 .post-title {
     margin: 0.78em -100px;
