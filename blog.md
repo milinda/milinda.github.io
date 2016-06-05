@@ -10,7 +10,7 @@ permalink: /blog/
         {% for post in site.posts %}
         	{% if post.blog == true %}
           <li>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            <span class="date">{{ post.date | date: '%Y %b %d' }}</span> - <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
           </li>
           {% endif %}
         {% endfor %}
