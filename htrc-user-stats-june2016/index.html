@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>D3 MapViz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.min.js"></script>
+    <style>
+        .background {
+            fill: none;
+            pointer-events: all;
+        }
+
+        #states {
+            fill: #FFEDA0;
+        }
+
+        #states .active {
+            fill: orange;
+        }
+
+        .midwest {
+            fill: #FED976;
+        }
+
+        #state-borders {
+            fill: none;
+            stroke: rgb(33, 113, 181);
+            stroke-width: 1.5px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            pointer-events: none;
+        }
+
+        .circle {
+            fill: #3CB371;
+            fill-opacity: .5;
+            stroke: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>D3 MapViz</h1>
+    </div>
+    <div id="map" style="position: relative;"></div>
+</div>
+<script type="text/javascript">
+    var midwestStates = [39, 18, 26, 55, 17, 29, 20, 31, 19, 27, 38, 46];
+    var unis = [[41.7886, -87.5987, 14, "uchicago.edu"],
+        [40.1020, -88.2272, 73, "uiuc.edu"],
+        [39.1704, -86.5143, 66, "iu.edu"],
+        [41.6627, -91.5549, 9, "uiowa.edu"],
+        [38.9869, -76.9426, 3, "umd.edu"],
+        [42.2780, -83.7382, 44, "umich.edu"],
+        [42.7018, -84.4822, 3, "msu.edu"],
+        [44.9740, -93.2277, 4, "umn.edu"],
+        [40.8202, -96.7005, 1, "unl.edu"],
+        [40.7982, -77.8599, 4, "psu.edu"],
+        [40.4237, -86.9212, 1, "purdue.edu"],
+        [40.4879, -74.4398, 31, "rutgers.edu"],
+        [43.0766, -89.4125, 11, "wisc.edu"]];
+
+    var colors = randomColor({
+        count: unis.length,
+        hue: 'random'
+    });
+
+    var width = 2000,
+            height = 1250,
+            centered;
+    var projection = d3.geo.albersUsa()
+            .scale(2300)
+            .translate([width / 2, height / 2]);
+    var path = d3.geo.path()
+            .projection(projection);
+    var svg = d3.select("#map").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+    svg.append("rect")
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height);
+    var circles = svg.append("g")
+            .attr("id", "circles");
+    var g = svg.append("g");
+
+    var domain =[];
+    for (var u in unis) {
+        domain.push(unis[u][3]);
+    }
+
+    var ordinal = d3.scale.ordinal()
+            .domain(domain)
+            .range(colors);
+
+    var svg = d3.select("svg");
+
+    svg.append("g")
+            .attr("class", "legendOrdinal")
+            .attr("transform", "translate(20,20)");
+
+    var legendOrdinal = d3.legend.color()
+    //d3 symbol creates a path-string, for example
+    //"M0,-8.059274488676564L9.306048591020996,
+    //8.059274488676564 -9.306048591020996,8.059274488676564Z"
+            //.shape("path", d3.svg.symbol().type("triangle-up").size(150)())
+            .shapePadding(10)
+            .scale(ordinal);
+
+    svg.select(".legendOrdinal")
+            .call(legendOrdinal);
+
+    d3.json("us.json", function (error, us) {
+        if (error) throw error;
+        g.append("g")
+                .attr("id", "states")
+                .selectAll("path")
+                .data(topojson.feature(us, us.objects.states).features)
+                .enter().append("path")
+                .attr("d", path)
+                .attr("class", function (d) {
+                    if (midwestStates.indexOf(d.id) != -1) {
+                        return "midwest"
+                    }
+                });
+        //.on("click", clicked);
+        g.append("path")
+                .datum(topojson.mesh(us, us.objects.states, function (a, b) {
+                    return a !== b;
+                }))
+                .attr("id", "state-borders")
+                .attr("d", path);
+    });
+
+    for (var i in unis) {
+        var coordinates = projection([unis[i][1], unis[i][0]]);
+        svg.append("circle")
+                .attr("cx", coordinates[0])
+                .attr("cy", coordinates[1])
+                .attr("r", Math.sqrt(unis[i][2]) * 8)
+                .attr("class", "circle")
+                .style("fill", colors[i]);
+        svg.append("text")
+                .style("fill", "black")
+                .attr("x", coordinates[0])
+                .attr("y", coordinates[1] + 5)
+                .attr("text-anchor", "middle")
+                .text(unis[i][2]);
+    }
+</script>
+</body>
+</html>
