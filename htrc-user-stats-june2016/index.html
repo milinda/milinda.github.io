@@ -85,7 +85,7 @@
             centered;
     var projection = d3.geo.albersUsa()
             .scale(2300)
-            .translate([width / 2, height / 2]);
+            .translate([(width / 3) * 2, height / 2]);
     var path = d3.geo.path()
             .projection(projection);
     var svg = d3.select("#map").append("svg")
