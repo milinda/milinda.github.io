@@ -46,6 +46,10 @@
             font-weight: normal;
             font-size: 1.2em;
         }
+        
+        .circlelabel {
+           font-size: 1.2em; 
+        }
     </style>
 </head>
 <body>
@@ -156,6 +160,7 @@
                 .attr("x", coordinates[0])
                 .attr("y", coordinates[1] + 5)
                 .attr("text-anchor", "middle")
+                .attr("class", "circlelabel")
                 .text(unis[i][2]);
     }
 </script>
