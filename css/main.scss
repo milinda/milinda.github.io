@@ -6,9 +6,9 @@
 
 
 // Our variables
-$base-font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+$base-font-family: 'EB Garamond', 'Roboto', 'Helvetica Neue', sans-serif;
 
-$base-font-size:   18px;
+$base-font-size:   22px;
 $base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.67;
@@ -17,7 +17,8 @@ $header-font-family: 'Playfair Display', 'Georgia', serif ;
 
 $spacing-unit:     30px;
 
-$text-color:       #696969;
+$text-color:       #444;
+$header-text-color: #333;
 //$text-color:       #030303;
 
 $background-color: #ffffff;

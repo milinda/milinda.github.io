@@ -47,8 +47,8 @@
     font-weight: $name-font-weight;
     padding-left: 4px;
     padding-right: 4px;
-    font-family: $name-font-family;
-    font-size: $name-font-size;
+    // font-family: $name-font-family;
+    // font-size: $name-font-size;
 }
 .post-header {
     // background: $about-background-color;
@@ -91,4 +91,8 @@
 
 .post img {
     margin: 1em -100px;
+}
+
+.navbar-default {
+    background-color: #fff;
 }
