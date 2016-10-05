@@ -32,19 +32,19 @@ Caused by: org.apache.hadoop.ipc.RemoteException(java.io.IOException): File /use
 ....
 ```
 
-It turns out that this is happening mainly because use of EC2 private DNS names to identify data nodes. Host name to use with datanode is automatically discovered during startup and we always get private DNS name inside EC2 VMs. So the solution is to add following to your hdfs-site.xml:
+It turns out that this is happening mainly because use of EC2 private DNS names to identify data nodes. Host names identifying data nodes are automatically discovered during startup and we always get private DNS name when this happens inside EC2 VMs. It looks like Hadoop is not going to fix this ([HADOOP-2776](https://issues.apache.org/jira/browse/HADOOP-2776)). Solution is to add following to your hdfs-site.xml:
 
 ```xml
 <property>
-		<name>dfs.client.use.datanode.hostname</name>
-		<value>true</value>
+	<name>dfs.client.use.datanode.hostname</name>
+	<value>true</value>
 </property>
 ```
 
-and add entry to your ```/etc/hosts``` file to resolve data node's private DNS to the public ip like below.
+and add an entry to your ```/etc/hosts``` file to resolve data node's private DNS to the public ip like below.
 
 ```
 52.26.132.68 ip-172-31-12-45.us-west-2.compute.internal
 ```
 
-Above will make sure the data nodes on EC2 are accessible from outside. Only drawback is you have to add ```hosts``` file entries for each data node you have.
+Above will make sure the data nodes on EC2 are accessible from outside by telling HDFS client to use hostname instead of ip and resolving that hostname to publicaly accessible ip. Only drawback of this approach is the need of adding ```hosts``` file entries for each data node you have. 
