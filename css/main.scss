@@ -6,14 +6,14 @@
 
 
 // Our variables
-$base-font-family: 'calluna_sansregular', 'EB Garamond', 'Roboto', 'Helvetica Neue', sans-serif;
+$base-font-family: 'calluna_sansregular', 'Helvetica Neue', sans-serif;
 
 $base-font-size:   21px;
 $base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
-$header-font-family: 'callunaregular', 'Playfair Display', 'Georgia', serif;
+$header-font-family: 'callunaregular', 'Georgia', serif;
 
 $spacing-unit:     30px;
 
@@ -24,7 +24,7 @@ $background-color: #fffef8;
 $brand-color: #7F4B30;
 $name-background-color: #FF7D4C;
 $name-color: #ffffff;
-$name-font-family: 'callunaregular','Playfair Display', 'Georgia', serif;
+$name-font-family: 'callunaregular', 'Georgia', serif;
 $name-font-size: 27px;
 $name-font-weight: bold;
 
