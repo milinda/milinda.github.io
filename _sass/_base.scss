@@ -63,7 +63,14 @@ h3 {
     // border-bottom: 1px #e7e7e7 solid;
 }
 
-pre, code {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 16px;
+pre {
+    border-radius: 0;
+    border: 0;
+    border-left: 5px solid #ff7d4c;
+    background-color: $code-background-color;
+}
+
+pre code {
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
 }
