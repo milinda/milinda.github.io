@@ -26,6 +26,11 @@
     // background: $about-background-color;
     // border-bottom: $about-border;
 }
+
+.navbar-default {
+    background-color: $background-color;
+    border-color: $nav-border-color;
+}
 .navbar-default .navbar-brand {
     font-size: 36px;
     text-shadow: 3px 0px 0px #FF7D4C;
@@ -39,7 +44,7 @@
     margin-top: 36px;
     padding-top: 19px;
     color: #777;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid $nav-border-color;
 }
 .name {
     background: $name-background-color;
@@ -93,6 +98,10 @@
     margin: 1em -100px;
 }
 
-.navbar-default {
-    background-color: #fff;
+blockquote {
+    border-left: 5px solid $nav-border-color;
 }
+
+// .navbar-default {
+//     background-color: #fff;
+// }
