@@ -152,3 +152,11 @@ Most of the sample code in the internet including [this](https://sreejithrpillai
 ```bash
 hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles <bulk_load_mapreduce_output_path> <table_name>
 ```
+
+### References:
+
+* [How-to: Use HBase Bulk Loading, and Why](http://blog.cloudera.com/blog/2013/09/how-to-use-hbase-bulk-loading-and-why/)
+* [Bulkloading Data Into HBase Table Using MapReduce](https://sreejithrpillai.wordpress.com/2015/01/08/bulkloading-data-into-hbase-table-using-mapreduce/)
+* [3 Ways to Load Data From HDFS to HBase](http://blogs.perficient.com/delivery/blog/2015/09/09/some-ways-load-data-from-hdfs-to-hbase/)
+* [hbase-bulk-import-example](https://github.com/jrkinley/hbase-bulk-import-example)
+* [HBase-Bulk-Load-Example](https://github.com/Paschalis/HBase-Bulk-Load-Example)
