@@ -63,12 +63,12 @@ Then we can introduce following constraint about whole system:
 
 ## Solutions
 
-We can two approaches to find the minimum number of bins
+We can use two approaches to find the minimum number of bins
 
 1. Start with a large number of bins and try to decrease the number of bins until there is no viable solution.
 2. Compute a lower bound and increase the number of bins until we find a solution.
 
-Then there different ways of bin packing
+Then there are different ways of bin packing
 
 * first fit decreasing - First bin in which an item can be put is selected,
 * best fit decreasing - Select a bin such that remaining capacity after item is pack is minimal,
