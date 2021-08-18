@@ -1,0 +1,2 @@
+files/consul-k8s filter=lfs diff=lfs merge=lfs -text
+files/consul-k8s.exe filter=lfs diff=lfs merge=lfs -text
